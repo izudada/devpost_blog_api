@@ -1,8 +1,5 @@
 from django.test import SimpleTestCase
 from django.urls import resolve, reverse
-
-from django.test import SimpleTestCase
-from django.urls import resolve, reverse
 from ..views import (
                         register,
                         login_user,
