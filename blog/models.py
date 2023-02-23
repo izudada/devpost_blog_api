@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 class Article(TimeModel):
     title = models.CharField(max_length=200, unique=True)
     author = models.ForeignKey(User, related_name="articles", on_delete= models.CASCADE, null=True)
-    body = RichTextField()
+    body = models.TextField()
     slug = models.SlugField(null=True)
     likes = models.ManyToManyField(User, related_name="likes", null=True)
     dislikes = models.ManyToManyField(User, related_name="dislikes", null=True)
@@ -18,9 +18,6 @@ class Article(TimeModel):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self, **kwargs):
-        return reverse('article_detail', kwargs={'slug': self.slug})
 
     @property
     def number_of_comments(self):
