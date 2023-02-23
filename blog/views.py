@@ -5,6 +5,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
 from django.utils.text import slugify
 
@@ -60,3 +61,28 @@ class ArticleDetailAPIView(RetrieveUpdateDestroyAPIView):
             return article_operation(self, serializer)
         else:
             return Response({'error': serializer.error}, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+@api_view(['PATCH',])
+@permission_classes((IsAuthenticated,))
+@authentication_classes([TokenAuthentication])
+def user_preference(request, *args, **kwargs):
+    """
+        Endpoint to like or dislike an article
+    """
+    try:
+        article = Article.objects.filter(slug=kwargs['slug'])[0]
+    except Article.DoesNotExist:
+        return Response({'error: no order record exists yet'}, status=status.HTTP_404_NOT_FOUND)
+    preference = request.data['preference']
+    if preference == 'like':
+        if request.user not in article.likes:
+            article.likes.add(request.user)
+        else:
+            article.likes.remove(request.user)
+    else:
+        if request.user not in article.dislikes:
+            article.dislikes.add(request.user)
+        else:
+            article.dislikes.remove(request.user)
+    return Response({'message': f'preference changed successfully'}, status=status.HTTP_200_OK)
