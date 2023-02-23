@@ -3,7 +3,8 @@ from .views import (
                     ArticleAPIView,
                     ArticleDetailAPIView,
                     user_preference,
-                    CommentAPIView
+                    CommentAPIView,
+                    CommentDetailAPIView
                 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('articles/<slug:slug>/', ArticleDetailAPIView.as_view(), name="article"),
     path('articles/<slug:slug>/preference/', user_preference, name="preference"),
     path('articles/<slug:slug>/comments/', CommentAPIView.as_view(), name="comments"),
+    path('articles/<slug:slug>/comments/<int:id>/', CommentDetailAPIView.as_view(), name="comment"),
 ]

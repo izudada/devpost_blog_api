@@ -22,6 +22,15 @@ def article_operation(self, serializer):
     user = self.request.user
     return serializer.save(author=user, slug=slug)
 
+def comment_operation(self, serializer):
+    """
+        A function that performs a put or create 
+        operation on a comment
+    """
+    author = self.request.user
+    article = Article.objects.get(slug=self.kwargs['slug'])
+    return serializer.save(author=author, article=article)
+
 
 class ArticleAPIView(ListCreateAPIView):
     """
@@ -56,7 +65,7 @@ class ArticleDetailAPIView(RetrieveUpdateDestroyAPIView):
         return Article.objects.filter(slug=self.kwargs['slug'])
 
     def perform_update(self, serializer):
-        #   update and article if serializer deems the payload valid
+        #   update an article if serializer deems the payload valid
         if serializer.is_valid():
             return article_operation(self, serializer)
         else:
@@ -104,9 +113,26 @@ class CommentAPIView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         #   create a comment
-        author = self.request.user
-        article = Article.objects.get(slug=self.kwargs['slug'])
-        print(author, article)
-        return serializer.save(author=author, article=article)
+        return comment_operation(self, serializer)
 
 
+class CommentDetailAPIView(RetrieveUpdateDestroyAPIView):
+    """
+        This class defines the update, delete and detail
+        behavior of a comment api.
+    """
+    serializer_class = CommentSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    lookup_field = "id"
+
+    def get_queryset(self):
+        #   get an article using it's slug
+        return Comment.objects.filter(id=self.kwargs['id'])
+
+    def perform_update(self, serializer):
+        #   create a comment
+        if serializer.is_valid():
+            comment_operation(self, serializer)
+        else:
+            return Response({'error': serializer.error}, status=status.HTTP_406_NOT_ACCEPTABLE)

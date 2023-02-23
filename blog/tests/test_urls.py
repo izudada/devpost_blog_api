@@ -4,7 +4,8 @@ from ..views import (
                         ArticleAPIView,
                         ArticleDetailAPIView,
                         user_preference,
-                        CommentAPIView
+                        CommentAPIView,
+                        CommentDetailAPIView
                     )
 
 
@@ -25,3 +26,7 @@ class TestUrls(SimpleTestCase):
     def test_comments_api_resolves(self):
         url = reverse('comments', kwargs={'slug': "how-to"})
         self.assertEquals(resolve(url).func.view_class, CommentAPIView)
+
+    def test_comments_api_resolves(self):
+        url = reverse('comment', kwargs={'slug': "how-to", "id": 7})
+        self.assertEquals(resolve(url).func.view_class, CommentDetailAPIView)

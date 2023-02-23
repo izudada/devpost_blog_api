@@ -24,7 +24,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['author', 'article', 'body', 'created_at']
+        fields = ['id', 'author', 'article', 'body', 'created_at']
 
         def save(self, author, article):
             """
