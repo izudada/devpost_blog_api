@@ -1,6 +1,10 @@
 from django.urls import path
-from blog import views
+from .views import (
+                    ArticleAPIView,
+                    ArticleDetailAPIView
+                )
 
 urlpatterns = [
-    path('articles/', views.ArticleAPIView.as_view(), name="articles"),
+    path('articles/', ArticleAPIView.as_view(), name="articles"),
+    path('articles/<slug:slug>/', ArticleDetailAPIView.as_view(), name="article"),
 ]

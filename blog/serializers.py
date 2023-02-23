@@ -12,8 +12,6 @@ class ArticleSerializer(serializers.ModelSerializer):
             """
                 A method overiding DRF serializer's save method
             """
-            slug = slugify(self.validated_data.get("title"))
-            print(slug)
             new_article = Article(
                 title = self.validated_data.get("title"),
                 author = user,
