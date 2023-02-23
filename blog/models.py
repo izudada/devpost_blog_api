@@ -9,8 +9,8 @@ class Article(TimeModel):
     author = models.ForeignKey(User, related_name="articles", on_delete= models.CASCADE, null=True)
     body = models.TextField()
     slug = models.SlugField(null=True)
-    likes = models.ManyToManyField(User, related_name="likes")
-    dislikes = models.ManyToManyField(User, related_name="dislikes")
+    likes = models.ManyToManyField(User, related_name="likes", null=True)
+    dislikes = models.ManyToManyField(User, related_name="dislikes", null=True)
 
     class Meta:
         ordering = ('-created_at',)
@@ -41,8 +41,8 @@ class Article(TimeModel):
 
 
 class Comment(TimeModel):
-    author = models.ForeignKey(User, related_name="comments", on_delete= models.CASCADE)
-    article = models.ForeignKey(Article, related_name="comments", on_delete= models.CASCADE)
+    author = models.ForeignKey(User, related_name="comments", on_delete= models.CASCADE, null=True)
+    article = models.ForeignKey(Article, related_name="comments", on_delete= models.CASCADE, null=True)
     body = models.TextField()
 
     class Meta:
