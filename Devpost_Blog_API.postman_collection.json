@@ -1,0 +1,1703 @@
+{
+	"info": {
+		"_postman_id": "16118fd2-d3e2-4d7e-818d-ca2ab6a59c95",
+		"name": "Devpost Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20677030"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response should have message in body\", function () {",
+							"    pm.response.to.have.jsonBody(\"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johndoe@gmail.com\",\n    \"first_name\": \"john\",\n    \"last_name\": \"doe\",\n    \"username\": \"johndoe\",\n    \"password\": \"test1234\",\n    \"password2\": \"test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{account_host}}auth/register/",
+					"host": [
+						"{{account_host}}auth"
+					],
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"johndoe@gmail.com\",\n    \"first_name\": \"john\",\n    \"last_name\": \"doe\",\n    \"username\": \"johndoe\",\n    \"password\": \"test1234\",\n    \"password2\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/devpost/v1/account/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"devpost",
+								"v1",
+								"account",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 11:59:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "129"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"user registered successfully\",\n    \"email\": \"johndoe@gmail.com\",\n    \"username\": \"johndoe\",\n    \"first_name\": \"john\",\n    \"last_name\": \"doe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have user token\", function () {",
+							"    pm.response.to.have.jsonBody(\"token\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johndoe@gmail.com\",\n    \"password\": \"test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{account_host}}auth/login/",
+					"host": [
+						"{{account_host}}auth"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"johndoe@gmail.com\",\n    \"password\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{account_host}}auth/login/",
+							"host": [
+								"{{account_host}}auth"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 12:37:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "124"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "csrftoken=mxzS93dSQeeWXW4IWxqIReWA8rZwlT39NPSTJZWFLjaMrA730sfGyUZJUA20gi7O; expires=Tue, 20 Feb 2024 12:37:37 GMT; Max-Age=31449600; Path=/; SameSite=Lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "sessionid=g0lqw5jb9izi13u4rbrl0mrojxubzmra; expires=Tue, 07 Mar 2023 12:37:37 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"message\": \"user logged in\",\n        \"email_address\": \"johndoe@gmail.com\"\n    },\n    \"token\": \"6278c63ab85f15c3c577224b1cf01146597c706f\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have message\", function () {",
+							"    pm.response.to.have.jsonBody(\"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{account_host}}auth/logout/",
+					"host": [
+						"{{account_host}}auth"
+					],
+					"path": [
+						"logout",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Logout",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}auth/logout/",
+							"host": [
+								"{{account_host}}auth"
+							],
+							"path": [
+								"logout",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 12:37:17 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "sessionid=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=Lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User logged out successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have article title\", function () {",
+							"    pm.response.to.have.jsonBody(\"title\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Defining functions in Python 3\",\n    \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blog_host}}articles/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Article",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Defining functions in Python 3\",\n    \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blog_host}}articles/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 12:58:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "829"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"Defining functions in Python 3\",\n    \"author\": 1,\n    \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n    \"slug\": \"defining-functions-in-python-3\",\n    \"likes\": [],\n    \"dislikes\": [],\n    \"created_at\": \"2023-02-22T12:58:44.713367Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "All Articles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response must have results\", function () {",
+							"    pm.response.to.have.jsonBody(\"results\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All Articles",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 13:22:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8126"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 11,\n    \"next\": \"http://127.0.0.1:8000/devpost/v1/blog/articles/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"title\": \"Defining functions in Python 3\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"defining-functions-in-python-3\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:58:44.713367Z\"\n        },\n        {\n            \"title\": \"Defining functions in Python\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"defining-functions-in-python\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:56:37.821181Z\"\n        },\n        {\n            \"title\": \"Functions in Python 7\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"functions-in-python-7\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:55:40.673837Z\"\n        },\n        {\n            \"title\": \"Functions in Python 5\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:53:25.498749Z\"\n        },\n        {\n            \"title\": \"Functions in Python 4\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:52:50.138297Z\"\n        },\n        {\n            \"title\": \"Functions in Python 2\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:52:34.185269Z\"\n        },\n        {\n            \"title\": \"Functions in Python 11\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:51:56.880792Z\"\n        },\n        {\n            \"title\": \"Functions in Python 1\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:51:25.478093Z\"\n        },\n        {\n            \"title\": \"Functions in Python\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"none\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:47:07.656110Z\"\n        },\n        {\n            \"title\": \"Functions in Python 3\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"none\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:42:58.748196Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Search For Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have results\", function () {",
+							"    pm.response.to.have.jsonBody(\"results\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/?search=python",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "python"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search For Article",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/?search=python",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "python"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 22:36:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8140"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 11,\n    \"next\": \"http://127.0.0.1:8000/devpost/v1/blog/articles/?page=2&search=python\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"title\": \"Defining functions in Python 3\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"defining-functions-in-python-3\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:58:44.713367Z\"\n        },\n        {\n            \"title\": \"Defining functions in Python\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"defining-functions-in-python\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:56:37.821181Z\"\n        },\n        {\n            \"title\": \"Functions in Python 7\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"functions-in-python-7\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:55:40.673837Z\"\n        },\n        {\n            \"title\": \"Functions in Python 5\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:53:25.498749Z\"\n        },\n        {\n            \"title\": \"Functions in Python 4\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:52:50.138297Z\"\n        },\n        {\n            \"title\": \"Functions in Python 2\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:52:34.185269Z\"\n        },\n        {\n            \"title\": \"Functions in Python 11\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:51:56.880792Z\"\n        },\n        {\n            \"title\": \"Functions in Python 1\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": null,\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:51:25.478093Z\"\n        },\n        {\n            \"title\": \"Functions in Python\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"none\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:47:07.656110Z\"\n        },\n        {\n            \"title\": \"Functions in Python 3\",\n            \"author\": 1,\n            \"body\": \"Imagine needing to ask for the same input from a user more than 90 times in a program, or needing to send 10mails to a user from the sign-up to onboarding into the product. Would you rather write 10 emails in your program; or write a function that will take in the email body and recipient and call the function when needed? Nobody who values clean code or writes a DRY (Don't Repeat Yourself) code would want to write the same chunk of code 10 times, instead of using a function. Using a function won't only save you time and stress, but will enable easy comprehension for anybody who will be reading your code in the future. So please, use a function haha.\",\n            \"slug\": \"none\",\n            \"likes\": [],\n            \"dislikes\": [],\n            \"created_at\": \"2023-02-22T12:42:58.748196Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have title\", function () {",
+							"    pm.response.to.have.jsonBody(\"title\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/how-to-create-a-virtual-environment-in-python-3/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to-create-a-virtual-environment-in-python-3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Article",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/how-to-create-a-virtual-environment-in-python/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to-create-a-virtual-environment-in-python",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 08:32:23 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "677"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"How to Create a Virtual Environment in Python\",\n    \"author\": 1,\n    \"body\": \"The easiest way to experience bugs in a code base is by installing or updating a project dependence/library. A Python project X, which requires version 1 of a particular library may behave differently or may require tweaking to work efficiently if updated while working on project Y . This can be avoided if all the dependencies of a project are contained within a virtual environment. This will isolate the dependencies of each project in separate environments or containers.\",\n    \"slug\": \"how-to-create-a-virtual-environment-in-python\",\n    \"likes\": [],\n    \"dislikes\": [],\n    \"created_at\": \"2023-02-22T23:01:32.435704Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have body\", function () {",
+							"    pm.response.to.have.jsonBody(\"body\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"How to Create a Virtual Environment in Python\",\n    \"body\": \"The easiest way to experience bugs in a code base is by installing or updating a project dependence/library. A Python project X, which requires version 1 of a particular library may behave differently or may require tweaking to work efficiently if updated while working on project Y . This can be avoided if all the dependencies of a project are contained within a virtual environment. This will isolate the dependencies of each project in separate environments or containers.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blog_host}}articles/how-to-create-a-virtual-environment-in-python-3/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to-create-a-virtual-environment-in-python-3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Article",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"How to Create a Virtual Environment in Python\",\n    \"body\": \"The easiest way to experience bugs in a code base is by installing or updating a project dependence/library. A Python project X, which requires version 1 of a particular library may behave differently or may require tweaking to work efficiently if updated while working on project Y . This can be avoided if all the dependencies of a project are contained within a virtual environment. This will isolate the dependencies of each project in separate environments or containers.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blog_host}}articles/how-to-create-a-virtual-environment-in-python-3/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to-create-a-virtual-environment-in-python-3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 08:45:05 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "677"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"How to Create a Virtual Environment in Python\",\n    \"author\": 1,\n    \"body\": \"The easiest way to experience bugs in a code base is by installing or updating a project dependence/library. A Python project X, which requires version 1 of a particular library may behave differently or may require tweaking to work efficiently if updated while working on project Y . This can be avoided if all the dependencies of a project are contained within a virtual environment. This will isolate the dependencies of each project in separate environments or containers.\",\n    \"slug\": \"how-to-create-a-virtual-environment-in-python\",\n    \"likes\": [],\n    \"dislikes\": [],\n    \"created_at\": \"2023-02-22T23:01:32.435704Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Article",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 09:08:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Like or Dislike",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have message\", function () {",
+							"    pm.response.to.have.jsonBody(\"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"preference\": \"like\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/preference/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						"preference",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Like or Dislike",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"preference\": \"like\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/preference/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								"preference",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 10:42:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"preference changed to like\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have body\", function () {",
+							"    pm.response.to.have.jsonBody(\"body\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"body\": \"nice. A table of content would have been nice too\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/comments/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"nice. A table of content would have been nice too\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/comments/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								"comments",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 13:34:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"author\": 1,\n    \"article\": 17,\n    \"body\": \"nice. A table of content would have been nice too\",\n    \"created_at\": \"2023-02-23T13:34:54.621007Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "All Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have results\", function () {",
+							"    pm.response.to.have.jsonBody(\"results\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/comments/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All Comments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/comments/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								"comments",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 13:35:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "272"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"author\": 1,\n            \"article\": 17,\n            \"body\": \"nice. A table of content would have been nice too\",\n            \"created_at\": \"2023-02-23T13:34:54.621007Z\"\n        },\n        {\n            \"author\": 1,\n            \"article\": 17,\n            \"body\": \"nicely written\",\n            \"created_at\": \"2023-02-23T13:31:15.287319Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must have article\", function () {",
+							"    pm.response.to.have.jsonBody(\"article\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"body\": \"A table of content would have been nice too\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/comments/6/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						"comments",
+						"6",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Comment",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"A table of content would have been nice too\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/comments/6/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								"comments",
+								"6",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 14:31:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "128"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 6,\n    \"author\": 1,\n    \"article\": 17,\n    \"body\": \"A table of content would have been nice too\",\n    \"created_at\": \"2023-02-23T13:34:54.621007Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{blog_host}}articles/how-to/comments/7/",
+					"host": [
+						"{{blog_host}}articles"
+					],
+					"path": [
+						"how-to",
+						"comments",
+						"7",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Comment",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{blog_host}}articles/how-to/comments/7/",
+							"host": [
+								"{{blog_host}}articles"
+							],
+							"path": [
+								"how-to",
+								"comments",
+								"7",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 14:34:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.7.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8000/"
+		},
+		{
+			"key": "account_host",
+			"value": "http://127.0.0.1:8000/devpost/v1/account/"
+		},
+		{
+			"key": "token",
+			"value": "3a62f8232975ecc9f306735b73c465818f34fdd2"
+		},
+		{
+			"key": "blog_host",
+			"value": "http://127.0.0.1:8000/devpost/v1/blog/"
+		}
+	]
+}
