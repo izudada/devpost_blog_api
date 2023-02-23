@@ -9,8 +9,8 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 
 from django.utils.text import slugify
 
-from .serializers import ArticleSerializer
-from .models import Article
+from .serializers import ArticleSerializer, CommentSerializer
+from .models import Article, Comment
 
 
 def article_operation(self, serializer):
@@ -70,10 +70,13 @@ def user_preference(request, *args, **kwargs):
     """
         Endpoint to like or dislike an article
     """
+    #   check if articl exists
     try:
         article = Article.objects.filter(slug=kwargs['slug'])[0]
     except Article.DoesNotExist:
         return Response({'error: no order record exists yet'}, status=status.HTTP_404_NOT_FOUND)
+    
+    #   get user reference payload and edit article preference
     preference = request.data['preference']
     if preference == 'like':
         if request.user not in article.likes:
@@ -86,3 +89,24 @@ def user_preference(request, *args, **kwargs):
         else:
             article.dislikes.remove(request.user)
     return Response({'message': f'preference changed successfully'}, status=status.HTTP_200_OK)
+
+
+class CommentAPIView(ListCreateAPIView):
+    """
+        This class defines the create and list
+        behavior of comment api.
+    """
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    pagination_class = PageNumberPagination
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        #   create a comment
+        author = self.request.user
+        article = Article.objects.get(slug=self.kwargs['slug'])
+        print(author, article)
+        return serializer.save(author=author, article=article)
+
+

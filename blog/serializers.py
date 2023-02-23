@@ -19,4 +19,20 @@ class ArticleSerializer(serializers.ModelSerializer):
                 slug = slug
             )
             new_article.save()
-            return new_article
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['author', 'article', 'body', 'created_at']
+
+        def save(self, author, article):
+            """
+                A method overiding DRF serializer's save method
+            """
+            new_comment = Comment(
+                author=author,
+                article = article,
+                body=self.validated_data.get("body")
+            )
+            new_comment.save()

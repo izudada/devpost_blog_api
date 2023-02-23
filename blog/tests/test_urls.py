@@ -3,7 +3,8 @@ from django.urls import resolve, reverse
 from ..views import (
                         ArticleAPIView,
                         ArticleDetailAPIView,
-                        user_preference
+                        user_preference,
+                        CommentAPIView
                     )
 
 
@@ -20,3 +21,7 @@ class TestUrls(SimpleTestCase):
     def test_preference_api_resolves(self):
         url = reverse('preference', kwargs={'slug': "how-to"})
         self.assertEquals(resolve(url).func, user_preference)
+
+    def test_comments_api_resolves(self):
+        url = reverse('comments', kwargs={'slug': "how-to"})
+        self.assertEquals(resolve(url).func.view_class, CommentAPIView)
