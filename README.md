@@ -1,6 +1,11 @@
-#   What's on your hackathon wish list?
+#   Project Description
 
-The hackathon managers at Devpost are trying something new! We’re looking to you for ideas, designs, and resources that will help hackers in future hackathons. What do you think would make participating in a hackathon easier and more fun?
+A blog API for [Devpost](https://devpost.com) hackathon built with Django Rest Framework
+
+
+##  What's on your hackathon wish list?
+
+The hackathon managers at [Devpost](https://devpost.com) are trying something new! We’re looking to you for ideas, designs, and resources that will help hackers in future hackathons. What do you think would make participating in a hackathon easier and more fun?
 
 
 ##  WHAT TO DO
